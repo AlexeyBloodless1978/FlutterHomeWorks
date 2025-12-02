@@ -14,10 +14,10 @@ class BankAccount {
   String accountNumber;
   String _accountNumber;
   double _balance;
-  double amount=0;
+ // double amount=0;
   BankAccount(this.accountNumber) : _accountNumber=accountNumber, _balance=0;
     
- void deposit (amount) {
+ void deposit (double amount) {
    if (amount>0) {
     _balance=_balance+amount; 
    } else 
@@ -26,20 +26,14 @@ class BankAccount {
    }   
  }
   
-  void withdraw (amount) {
+  void withdraw (double amount) {
    if (amount>_balance) {
       print ('Нельзя снять больше, чем есть на счете'); }
-    else if (amount<0) {
-       print ('Нельзя снять отрицательную сумму'); }
+    else if (amount<=0) {
+       print ('Нельзя снять отрицательную или нулевую сумму'); }
     else 
     {
       _balance=_balance-amount; 
     } 
   }
 
-  
- getBalance () {
-   return _balance;
- } 
-  
-}
