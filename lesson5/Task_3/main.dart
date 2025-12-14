@@ -26,7 +26,7 @@ class Counter {
 
   Stream<int> get stream => _controller.stream;
 
-  void dispose() {
+  void closeCounter() {
     _controller.close();
   }
 }
@@ -56,9 +56,9 @@ void main(){
 
   Future.delayed(Duration(milliseconds: 100), () {
    // subscribe.cancel();
-    counter.dispose();
+    counter.closeCounter();
   });
-  
+
   Future.delayed(Duration(milliseconds: 100), () {
      subscribe.cancel();
     //counter.dispose();
