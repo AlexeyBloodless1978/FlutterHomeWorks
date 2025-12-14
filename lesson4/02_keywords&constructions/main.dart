@@ -34,7 +34,7 @@ void main(){
     case 5 : print ('Пятница');
     case 6 : print ('Суббота');
     case 7 : print ('Воскресенье');
-    default  : print ('Неопредлено');
+    default  : print ('Неопределено');
   }
 
 }
