@@ -8,26 +8,36 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ЛЕНТА НОВОСТЕЙ'),
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Colors.white,
-      ),
-      body: Center(
-         // mainAxisAlignment: MainAxisAlignment.center,
-          Container(
-              height:  MediaQuery.of(context).size.height * 0.5,
-              child: const GridViewWidget(),
-            ),
+        title:SafeArea(top: false,
+          child: Text('ЛЕНТА НОВОСТЕЙ'),
         ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //debugPrint('Кнопка нажата!');
-        },
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        child: const Icon(Icons.add, color: Colors.white),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      body: Stack(
+          children: [
+            const GridViewWidget(itemCount :42),
+
+          Positioned(
+        right: 20,
+        bottom: 20,
+        child: SizedBox(
+          height: 50,
+          child: ElevatedButton(
+            onPressed: (){},
+            child: const Text('+'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.grey[300],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+            ),
+          ),
+        ),
+      ),
+
+      ],
+      ),
     );
   }
 }
+
