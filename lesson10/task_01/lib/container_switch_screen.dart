@@ -29,7 +29,7 @@ class _ContainerSwitchScreenState extends State<ContainerSwitchScreen> {
             transitionBuilder: (Widget child, Animation<double> animation) {
               return ScaleTransition(scale: animation, child: child);
             },
-            child:  animatedBox(
+            child:  AnimatedBox(
               key: ValueKey<bool>(_showFirstContainer),
               firstWidget: _showFirstContainer,
             ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class animatedBox extends StatelessWidget {
+class AnimatedBox extends StatelessWidget {
   final bool firstWidget;
 
-  const animatedBox({Key? key, this.firstWidget = true}) : super(key: key);
+  const AnimatedBox({Key? key, this.firstWidget = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,8 @@ class animatedBox extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: firstWidget
-                ? Colors.blue.withOpacity(0.5)
-                : Colors.orange.withOpacity(0.5),
+                ? Colors.blue.withAlpha(128)
+                : Colors.orange.withAlpha(128),
             blurRadius: 10,
             spreadRadius: 2,
           ),

@@ -9,35 +9,33 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title:SafeArea(top: false,
-          child: Text('ЛЕНТА НОВОСТЕЙ'),
-        ),
+        title: const Text('ЛЕНТА НОВОСТЕЙ'),
       ),
-      body: Stack(
+      body: SafeArea(
+        child: Stack(
           children: [
-            const GridViewWidget(itemCount :42),
+            const GridViewWidget(itemCount: 42),
 
-          Positioned(
-        right: 20,
-        bottom: 20,
-        child: SizedBox(
-          height: 50,
-          child: ElevatedButton(
-            onPressed: (){},
-            child: const Text('+'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.grey[300],
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.0),
+            Positioned(
+              right: 20,
+              bottom: 20,
+              child: SizedBox(
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('+'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey[300],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
+          ],
         ),
-      ),
-
-      ],
       ),
     );
   }
 }
-
