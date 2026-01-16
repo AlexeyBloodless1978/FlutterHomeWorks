@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login_icon.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -20,7 +21,7 @@ class _LoginFormState extends State<LoginForm> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.black,
-        padding: EdgeInsetsGeometry.only(top: 20, left: 20, bottom: 40),
+        padding: EdgeInsets.only(top: 20, left: 20, bottom: 40),
         content: Text(
           'Функция востановления пароля',
           style: TextStyle(color: Colors.white),
@@ -29,11 +30,11 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 
-  void _createNewAccaunt() {
+  void _createNewAccount() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.green,
-        padding: EdgeInsetsGeometry.only(top: 20, left: 20, bottom: 40),
+        padding: EdgeInsets.only(top: 20, left: 20, bottom: 40),
         content: Text(
           'Переход к регистрации',
           style: TextStyle(color: Colors.white),
@@ -52,29 +53,37 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _loginInApp() async {
+
+
+    // Проверяем валидность формы
+    final form = _formKey.currentState;
+    if (form == null || !form.validate()) {
+      // Форма не построена или не валидна
+      return;
+    }
+
+    // Устанавливаем состояние загрузки
     setState(() {
       _isGoodData = true;
     });
 
-    // Проверяем валидность формы
-    final isValid = _formKey.currentState!.validate();
-
     await Future.delayed(Duration(seconds: 2));
 
-    if (isValid) {
-      // Если форма валидна, обрабатываем данные
+    if (!mounted) return;
+
+    if (form.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.green,
-          padding: EdgeInsetsGeometry.only(top: 20, left: 20, bottom: 40),
-          content: Text('Вход выполнен успешно'),
+          padding: const EdgeInsets.only(top: 20, left: 20, bottom: 40),
+          content: const Text('Вход выполнен успешно', style: TextStyle(color: Colors.white)),
         ),
       );
     }
 
-    setState(() {
-      _isGoodData = false;
-    });
+    if (mounted) {
+      setState(() => _isGoodData = false);
+    }
   }
 
   @override
@@ -85,33 +94,7 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           const SizedBox(height: 32),
 
-          Container(
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-              color: Color(0x80c9e9FF), // цвет круга
-              shape: BoxShape.circle, // делаем круг
-              // Можно добавить градиент или тень:
-              // gradient: LinearGradient(...),
-              // boxShadow: [...],
-            ),
-            child: const Icon(
-              Icons.lock, // иконка замка
-              color: Colors.blue, // цвет иконки
-              size: 30,
-            ),
-          ),
-
-          const SizedBox(height: 16),
-
-          const Text(
-            'Вход в систему',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
+          const LoginIcon(),
 
           const SizedBox(height: 32),
 
@@ -139,7 +122,7 @@ class _LoginFormState extends State<LoginForm> {
 
           TextFormField(
             controller: _passwordController,
-            obscureText: _obscureText ?? true,
+            obscureText: _obscureText ,//?? true,
             decoration: InputDecoration(
               labelText: 'Пароль',
               hintText: 'Введите ваш пароль',
@@ -172,7 +155,7 @@ class _LoginFormState extends State<LoginForm> {
           ),
 
           Align(
-            alignment: AlignmentGeometry.centerRight,
+            alignment: Alignment.centerRight,
             child: InkWell(
               onTap: _recoveryPassword,
               child: Padding(
@@ -227,9 +210,9 @@ class _LoginFormState extends State<LoginForm> {
           const SizedBox(height: 16),
 
           Align(
-            alignment: AlignmentGeometry.center,
+            alignment: Alignment.center,
             child: InkWell(
-              onTap: _createNewAccaunt,
+              onTap: _createNewAccount,
               child: Padding(
                 padding: EdgeInsetsGeometry.symmetric(
                   vertical: 10,
