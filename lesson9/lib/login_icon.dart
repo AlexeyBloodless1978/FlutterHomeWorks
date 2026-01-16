@@ -14,11 +14,7 @@ class LoginIcon extends StatelessWidget {
             color: const Color(0x80c9e9FF),
             shape: BoxShape.circle,
           ),
-          child: const Icon(
-            Icons.lock,
-            color: Colors.blue,
-            size: 30,
-          ),
+          child: const Icon(Icons.lock, color: Colors.blue, size: 30),
         ),
         const SizedBox(height: 16),
         const Text(

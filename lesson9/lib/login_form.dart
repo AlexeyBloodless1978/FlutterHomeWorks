@@ -53,8 +53,6 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _loginInApp() async {
-
-
     // Проверяем валидность формы
     final form = _formKey.currentState;
     if (form == null || !form.validate()) {
@@ -76,7 +74,10 @@ class _LoginFormState extends State<LoginForm> {
         SnackBar(
           backgroundColor: Colors.green,
           padding: const EdgeInsets.only(top: 20, left: 20, bottom: 40),
-          content: const Text('Вход выполнен успешно', style: TextStyle(color: Colors.white)),
+          content: const Text(
+            'Вход выполнен успешно',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       );
     }
@@ -122,7 +123,7 @@ class _LoginFormState extends State<LoginForm> {
 
           TextFormField(
             controller: _passwordController,
-            obscureText: _obscureText ,//?? true,
+            obscureText: _obscureText, //?? true,
             decoration: InputDecoration(
               labelText: 'Пароль',
               hintText: 'Введите ваш пароль',
