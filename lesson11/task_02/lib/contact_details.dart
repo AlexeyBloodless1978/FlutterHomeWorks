@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../models/contact.dart';
+import '../widgets/contact_info.dart';
 
 class ContactDetailScreen extends StatelessWidget {
   final String contactId;
@@ -25,35 +26,16 @@ class ContactDetailScreen extends StatelessWidget {
           ),
         ],*/
       ),
-      body: contact != null
-          ? _buildContactInfo(contact)
-          : Center(child: CircularProgressIndicator()),
+      body: SafeArea(
+        child: contact != null
+            ? ContactInfo(contact: contact)
+            //    ? _buildContactInfo(contact)
+            : Center(child: CircularProgressIndicator()),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.pop(), // Назад
         child: Icon(Icons.arrow_back),
       ),
     );
   }
-}
-
-Widget _buildContactInfo(Contact contact) {
-  return Padding(
-    padding: EdgeInsets.all(20),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Center(
-          child: CircleAvatar(
-            radius: 50,
-            child: Text(contact.name[0], style: TextStyle(fontSize: 40)),
-          ),
-        ),
-        SizedBox(height: 20),
-        Text('Имя: ${contact.name}', style: TextStyle(fontSize: 18)),
-        Text('Телефон: ${contact.phone}', style: TextStyle(fontSize: 18)),
-        Text('Email: ${contact.email}', style: TextStyle(fontSize: 18)),
-        Text('Должность: ${contact.position}', style: TextStyle(fontSize: 18)),
-      ],
-    ),
-  );
 }

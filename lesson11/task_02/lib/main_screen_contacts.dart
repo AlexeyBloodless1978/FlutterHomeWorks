@@ -5,6 +5,8 @@ import '../models/contact.dart';
 import '../data/contacts.dart';
 
 class MainScreenContacts extends StatefulWidget {
+  const MainScreenContacts({super.key});
+
   @override
   _MainScreenContactsState createState() => _MainScreenContactsState();
 }
@@ -16,7 +18,8 @@ class _MainScreenContactsState extends State<MainScreenContacts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Контакты')),
-      body: Center(
+      body: SafeArea(
+        child:  Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -61,6 +64,7 @@ class _MainScreenContactsState extends State<MainScreenContacts> {
           child: Text('Перейти на второй экран'),
         ),*/
         ),
+      ),
       ),
     );
   }
