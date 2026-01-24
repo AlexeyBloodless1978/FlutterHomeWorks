@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   }
 }
 */
-//https://api.openweathermap.org/data/2.5/weather?q=gomel&units=metric&APPID=0f06c4197d319eedf26cea4525a70299
+
 
 void main() {
   final jsonString = '''
