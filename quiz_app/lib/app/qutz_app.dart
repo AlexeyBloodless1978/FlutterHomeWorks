@@ -6,7 +6,6 @@ import 'package:quiz_app/domain/auth_service.dart';
 import 'package:quiz_app/presentation/providers/app_provider.dart';
 import '../generated/l10n.dart';
 
-
 class QuizApp extends StatefulWidget {
   final GoRouter router;
   final AuthService authService;
@@ -19,15 +18,13 @@ class QuizApp extends StatefulWidget {
 
 class _QuizAppState extends State<QuizApp> {
   final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
-  
-  void _showSnackBarMessage(String message) {
 
+  void _showSnackBarMessage(String message) {
     final currentState = _scaffoldMessengerKey.currentState;
 
     if (currentState == null) return;
     final snackBar = SnackBar(content: Text(message));
     currentState.showSnackBar(snackBar);
-
   }
 
   // This widget is the root of your application.
@@ -36,30 +33,26 @@ class _QuizAppState extends State<QuizApp> {
     return AppProvider(
       authService: widget.authService,
       snackBarDispatcher: _showSnackBarMessage,
-      child:   MaterialApp.router(
-      scaffoldMessengerKey: _scaffoldMessengerKey,
-      title: 'Quiz App',
-      theme: ThemeData(
+      child: MaterialApp.router(
+        scaffoldMessengerKey: _scaffoldMessengerKey,
+        title: 'Quiz App',
+        theme: ThemeData(
           colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-         useMaterial3: true,
-        textTheme: TextTheme(
-          titleLarge: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.w500,
+          useMaterial3: true,
+          textTheme: TextTheme(
+            titleLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
           ),
         ),
-      ),
-      localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      routerConfig: widget.router,
-      //   home:          const HomePage(), //const MyHomePage(title: 'Flutter Demo Home Page'),
+        localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        routerConfig: widget.router,
+        //   home:          const HomePage(), //const MyHomePage(title: 'Flutter Demo Home Page'),
       ),
     );
-
   }
 }

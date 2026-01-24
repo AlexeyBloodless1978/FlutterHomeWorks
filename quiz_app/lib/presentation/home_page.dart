@@ -6,6 +6,7 @@ import 'package:quiz_app/presentation/providers/app_provider.dart';
 
 class HomePage extends StatelessWidget {
   final HomeRoute route;
+
   const HomePage({required this.route, super.key});
 
   @override
@@ -21,8 +22,8 @@ class HomePage extends StatelessWidget {
           child: Padding(
             padding: EdgeInsetsGeometry.all(20),
             child: LayoutBuilder(
-              builder: (context,contrains ) {
-                final width =contrains.maxWidth;
+              builder: (context, contrains) {
+                final width = contrains.maxWidth;
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -32,7 +33,7 @@ class HomePage extends StatelessWidget {
                       width: width,
                       child: ElevatedButton(
                         onPressed: () {
-                         // AppProvider.of(context).authService.signOut();
+                          // AppProvider.of(context).authService.signOut();
                         },
                         child: Text(S.of(context).start_button),
                       ),

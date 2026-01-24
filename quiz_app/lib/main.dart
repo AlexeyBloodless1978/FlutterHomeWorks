@@ -14,21 +14,14 @@ import 'package:quiz_app/app/qutz_app.dart';
 import 'package:quiz_app/domain/auth_service.dart';
 import 'generated/l10n.dart';
 
-
-
 final _router = createRouter(authService: _authService);
-final  _authService = AuthServiceImpl(firebaseAuth: FirebaseAuth.instance);
-
+final _authService = AuthServiceImpl(firebaseAuth: FirebaseAuth.instance);
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  
-
-  
-
-  runApp( QuizApp(router: _router, authService: _authService,));
+  runApp(QuizApp(router: _router, authService: _authService));
 }
 
 /*
