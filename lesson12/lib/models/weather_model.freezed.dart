@@ -1764,7 +1764,9 @@ as int,
 /// @nodoc
 mixin _$Sys {
 
- int get type; int get id; String get country; int get sunrise; int get sunset;
+//required int type,
+//required int id ,
+ String get country; int get sunrise; int get sunset;
 /// Create a copy of Sys
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1777,16 +1779,16 @@ $SysCopyWith<Sys> get copyWith => _$SysCopyWithImpl<Sys>(this as Sys, _$identity
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sys&&(identical(other.type, type) || other.type == type)&&(identical(other.id, id) || other.id == id)&&(identical(other.country, country) || other.country == country)&&(identical(other.sunrise, sunrise) || other.sunrise == sunrise)&&(identical(other.sunset, sunset) || other.sunset == sunset));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sys&&(identical(other.country, country) || other.country == country)&&(identical(other.sunrise, sunrise) || other.sunrise == sunrise)&&(identical(other.sunset, sunset) || other.sunset == sunset));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,id,country,sunrise,sunset);
+int get hashCode => Object.hash(runtimeType,country,sunrise,sunset);
 
 @override
 String toString() {
-  return 'Sys(type: $type, id: $id, country: $country, sunrise: $sunrise, sunset: $sunset)';
+  return 'Sys(country: $country, sunrise: $sunrise, sunset: $sunset)';
 }
 
 
@@ -1797,7 +1799,7 @@ abstract mixin class $SysCopyWith<$Res>  {
   factory $SysCopyWith(Sys value, $Res Function(Sys) _then) = _$SysCopyWithImpl;
 @useResult
 $Res call({
- int type, int id, String country, int sunrise, int sunset
+ String country, int sunrise, int sunset
 });
 
 
@@ -1814,11 +1816,9 @@ class _$SysCopyWithImpl<$Res>
 
 /// Create a copy of Sys
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? type = null,Object? id = null,Object? country = null,Object? sunrise = null,Object? sunset = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? country = null,Object? sunrise = null,Object? sunset = null,}) {
   return _then(_self.copyWith(
-type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as int,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,country: null == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+country: null == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
 as String,sunrise: null == sunrise ? _self.sunrise : sunrise // ignore: cast_nullable_to_non_nullable
 as int,sunset: null == sunset ? _self.sunset : sunset // ignore: cast_nullable_to_non_nullable
 as int,
@@ -1906,10 +1906,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int type,  int id,  String country,  int sunrise,  int sunset)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String country,  int sunrise,  int sunset)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Sys() when $default != null:
-return $default(_that.type,_that.id,_that.country,_that.sunrise,_that.sunset);case _:
+return $default(_that.country,_that.sunrise,_that.sunset);case _:
   return orElse();
 
 }
@@ -1927,10 +1927,10 @@ return $default(_that.type,_that.id,_that.country,_that.sunrise,_that.sunset);ca
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int type,  int id,  String country,  int sunrise,  int sunset)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String country,  int sunrise,  int sunset)  $default,) {final _that = this;
 switch (_that) {
 case _Sys():
-return $default(_that.type,_that.id,_that.country,_that.sunrise,_that.sunset);case _:
+return $default(_that.country,_that.sunrise,_that.sunset);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1947,10 +1947,10 @@ return $default(_that.type,_that.id,_that.country,_that.sunrise,_that.sunset);ca
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int type,  int id,  String country,  int sunrise,  int sunset)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String country,  int sunrise,  int sunset)?  $default,) {final _that = this;
 switch (_that) {
 case _Sys() when $default != null:
-return $default(_that.type,_that.id,_that.country,_that.sunrise,_that.sunset);case _:
+return $default(_that.country,_that.sunrise,_that.sunset);case _:
   return null;
 
 }
@@ -1962,11 +1962,11 @@ return $default(_that.type,_that.id,_that.country,_that.sunrise,_that.sunset);ca
 @JsonSerializable()
 
 class _Sys implements Sys {
-  const _Sys({required this.type, required this.id, required this.country, required this.sunrise, required this.sunset});
+  const _Sys({required this.country, required this.sunrise, required this.sunset});
   factory _Sys.fromJson(Map<String, dynamic> json) => _$SysFromJson(json);
 
-@override final  int type;
-@override final  int id;
+//required int type,
+//required int id ,
 @override final  String country;
 @override final  int sunrise;
 @override final  int sunset;
@@ -1984,16 +1984,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Sys&&(identical(other.type, type) || other.type == type)&&(identical(other.id, id) || other.id == id)&&(identical(other.country, country) || other.country == country)&&(identical(other.sunrise, sunrise) || other.sunrise == sunrise)&&(identical(other.sunset, sunset) || other.sunset == sunset));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Sys&&(identical(other.country, country) || other.country == country)&&(identical(other.sunrise, sunrise) || other.sunrise == sunrise)&&(identical(other.sunset, sunset) || other.sunset == sunset));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,id,country,sunrise,sunset);
+int get hashCode => Object.hash(runtimeType,country,sunrise,sunset);
 
 @override
 String toString() {
-  return 'Sys(type: $type, id: $id, country: $country, sunrise: $sunrise, sunset: $sunset)';
+  return 'Sys(country: $country, sunrise: $sunrise, sunset: $sunset)';
 }
 
 
@@ -2004,7 +2004,7 @@ abstract mixin class _$SysCopyWith<$Res> implements $SysCopyWith<$Res> {
   factory _$SysCopyWith(_Sys value, $Res Function(_Sys) _then) = __$SysCopyWithImpl;
 @override @useResult
 $Res call({
- int type, int id, String country, int sunrise, int sunset
+ String country, int sunrise, int sunset
 });
 
 
@@ -2021,11 +2021,9 @@ class __$SysCopyWithImpl<$Res>
 
 /// Create a copy of Sys
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? type = null,Object? id = null,Object? country = null,Object? sunrise = null,Object? sunset = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? country = null,Object? sunrise = null,Object? sunset = null,}) {
   return _then(_Sys(
-type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as int,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,country: null == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+country: null == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
 as String,sunrise: null == sunrise ? _self.sunrise : sunrise // ignore: cast_nullable_to_non_nullable
 as int,sunset: null == sunset ? _self.sunset : sunset // ignore: cast_nullable_to_non_nullable
 as int,

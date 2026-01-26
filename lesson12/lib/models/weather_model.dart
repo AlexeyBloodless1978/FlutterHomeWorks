@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'weather_model.freezed.dart';
+
 part 'weather_model.g.dart';
 
 @Freezed()
@@ -27,10 +28,7 @@ abstract class WeatherModel with _$WeatherModel {
 
 @Freezed()
 abstract class Coord with _$Coord {
-  const factory Coord({
-    required double lon,
-    required double lat,
-  }) = _Coord;
+  const factory Coord({required double lon, required double lat}) = _Coord;
 
   factory Coord.fromJson(Map<String, dynamic> json) => _$CoordFromJson(json);
 }
@@ -66,20 +64,15 @@ abstract class Main with _$Main {
 
 @Freezed()
 abstract class Wind with _$Wind {
-  const factory Wind({
-    required double speed,
-    required int deg,
-    double? gust,
-  }) = _Wind;
+  const factory Wind({required double speed, required int deg, double? gust}) =
+      _Wind;
 
   factory Wind.fromJson(Map<String, dynamic> json) => _$WindFromJson(json);
 }
 
 @Freezed()
 abstract class Clouds with _$Clouds {
-  const factory Clouds({
-    required int all,
-  }) = _Clouds;
+  const factory Clouds({required int all}) = _Clouds;
 
   factory Clouds.fromJson(Map<String, dynamic> json) => _$CloudsFromJson(json);
 }
@@ -87,8 +80,8 @@ abstract class Clouds with _$Clouds {
 @Freezed()
 abstract class Sys with _$Sys {
   const factory Sys({
-    required int type,
-    required int id,
+    //required int type, //По Минску данных полей нет
+    //required int id ,
     required String country,
     required int sunrise,
     required int sunset,

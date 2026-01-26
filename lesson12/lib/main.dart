@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'models/weather_model.dart';
 import 'main_screen.dart';
+
+
+//import 'models/weather_model.dart';
 //import 'models/simple_weather.dart';
 
-
-/*
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -17,17 +16,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'my homework lessons 12',
+      theme: ThemeData(primarySwatch: Colors.purple, useMaterial3: true),
+      home: const MainScreen(),
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
-      ),
-      home: MainScreen(),
     );
   }
 }
-*/
 
-
+//Тестирование модели погоды
+/*
 void main() {
   final jsonString = '''
     {"coord":{"lon":30.9754,"lat":52.4345},"weather":[{"id":701,"main":"Mist","description":"mist","icon":"50d"}],"base":"stations","main":{"temp":-15.01,"feels_like":-19.94,"temp_min":-15.04,"temp_max":-15.01,"pressure":1046,"humidity":92,"sea_level":1046,"grnd_level":1029},"visibility":4700,"wind":{"speed":2,"deg":20},"clouds":{"all":51},"dt":1768729940,"sys":{"type":1,"id":8933,"country":"BY","sunrise":1768715787,"sunset":1768745760},"timezone":10800,"id":627907,"name":"Gomel","cod":200}
@@ -53,7 +50,7 @@ void main() {
     print('Ошибка парсинга: $e');
   }
 }
-
+*/
 /*
 void main() {
 
