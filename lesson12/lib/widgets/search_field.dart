@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SearchField extends StatefulWidget {
   final Function(String) onSearch;
 
-  const SearchField({Key? key, required this.onSearch}) : super(key: key);
+  const SearchField({super.key, required this.onSearch});
 
   @override
   _SearchFieldState createState() => _SearchFieldState();

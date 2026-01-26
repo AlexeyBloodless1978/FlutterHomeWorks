@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class ErrorState extends StatelessWidget {
   final String errorMessage;
 
-  const ErrorState({Key? key, required this.errorMessage}) : super(key: key);
+  const ErrorState({super.key, required this.errorMessage});
 
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(

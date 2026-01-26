@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class LoadingState extends StatelessWidget {
   final String city;
 
-  const LoadingState({Key? key, required this.city}) : super(key: key);
-
+  const LoadingState({super.key, required this.city});
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(

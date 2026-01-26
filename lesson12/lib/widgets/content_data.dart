@@ -11,7 +11,6 @@ class ContentData extends StatelessWidget {
   final String? errorMessage;
   final WeatherModel? weather;
 
-  late WeatherModel currentWeather;
 
   ContentData({
     super.key,
@@ -32,8 +31,7 @@ class ContentData extends StatelessWidget {
     }
 
     if (weather != null) {
-      currentWeather = weather!;
-      return WeatherCard(weather: currentWeather);
+      return WeatherCard(weather: weather!);
     }
 
     return EmptyState();

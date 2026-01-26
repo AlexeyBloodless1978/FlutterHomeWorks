@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:lesson12/api/weather_api_service.dart';
 import 'package:lesson12/models/weather_model.dart';
 
@@ -35,9 +36,9 @@ class WeatherService {
     dio.interceptors.add(InterceptorsWrapper(
       onError: (error, handler) {
         if (error.response?.statusCode == 401) {
-          print('Invalid API key');
+          debugPrint('Invalid API key');
         } else if (error.response?.statusCode == 404) {
-          print('City not found');
+          debugPrint('City not found');
         }
         return handler.next(error);
       },
@@ -60,6 +61,11 @@ class WeatherService {
     }
   }
 
+/*
+// Неправильная обработка ошибок
+// Файл: lib/services/weather_service.dart
+// Проблема: метод _handleError возвращает String, но используется как исключение
+// Решение: создать кастомные классы исключений или возвращать Exception
 
   String _handleError(DioException error) {
     if (error.response != null) {
@@ -83,5 +89,20 @@ class WeatherService {
     } else {
       return "Network error: ${error.message}";
     }
+  }*/
+
+  Exception _handleError(DioException error) {
+    final message = error.response != null
+        ? switch (error.response!.statusCode) {
+      400 => "Bad request. Check your parameters.",
+      401 => "Invalid API key. Please check your API key.",
+      404 => "City not found. Please check the city name.",
+      429 => "Too many requests. Please try again later.",
+      500 || 502 || 503 || 504 => "Server error. Please try again later.",
+      _ => "An error occurred: ${error.response!.statusCode}",
+    }
+        : "Network error: ${error.message}";
+
+    return Exception(message);
   }
 }
