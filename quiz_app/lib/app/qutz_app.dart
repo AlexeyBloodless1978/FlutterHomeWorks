@@ -3,14 +3,16 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:quiz_app/domain/auth_service.dart';
+import 'package:quiz_app/domain/quiz_service.dart';
 import 'package:quiz_app/presentation/providers/app_provider.dart';
 import '../generated/l10n.dart';
 
 class QuizApp extends StatefulWidget {
   final GoRouter router;
   final AuthService authService;
+  final QuizService quizService;
 
-  const QuizApp({required this.router, required this.authService, super.key});
+  const QuizApp({required this.router, required this.authService, required this.quizService, super.key});
 
   @override
   State<QuizApp> createState() => _QuizAppState();
@@ -32,6 +34,7 @@ class _QuizAppState extends State<QuizApp> {
   Widget build(BuildContext context) {
     return AppProvider(
       authService: widget.authService,
+      quizService: widget.quizService,
       snackBarDispatcher: _showSnackBarMessage,
       child: MaterialApp.router(
         scaffoldMessengerKey: _scaffoldMessengerKey,

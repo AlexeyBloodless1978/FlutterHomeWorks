@@ -20,11 +20,17 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
-  static String m0(value) => "Ваша эл.пеочта верифицирована: ${value}";
+  static String m0(category) => "Категория ${category}";
 
-  static String m1(value) => "Ваша эл.почта: ${value}";
+  static String m1(value) => "Количество верных ответов: ${value}";
 
-  static String m2(value) => "Ваш id: ${value}";
+  static String m2(value) => "Ваша эл.пеочта верифицирована: ${value}";
+
+  static String m3(index, count) => "Вопрос ${index}/${count}";
+
+  static String m4(value) => "Ваша эл.почта: ${value}";
+
+  static String m5(value) => "Ваш id: ${value}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -32,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "autorization_page": MessageLookupByLibrary.simpleMessage(
       "Страница авторизации",
     ),
+    "back_button": MessageLookupByLibrary.simpleMessage("Вернутся назад"),
     "bad_email_message_1": MessageLookupByLibrary.simpleMessage(
       "Введите пожалуйста электронную почту",
     ),
@@ -44,13 +51,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "bad_password_message_2": MessageLookupByLibrary.simpleMessage(
       "Пароль должен иметь минимум 6 символов",
     ),
+    "categories_title": MessageLookupByLibrary.simpleMessage("Категории"),
+    "category": m0,
+    "count_correct_answers": m1,
     "email_field": MessageLookupByLibrary.simpleMessage("Эл.Почта"),
     "enter_text": MessageLookupByLibrary.simpleMessage("Войти"),
     "enter_text_line_1": MessageLookupByLibrary.simpleMessage(
       "Для авторизации введите электронную почту и пароль",
     ),
     "hello": MessageLookupByLibrary.simpleMessage("Привет мир (App Quiz (my))"),
-    "is_email_verified": m0,
+    "is_email_verified": m2,
     "login_button": MessageLookupByLibrary.simpleMessage("Войти"),
     "logout_button": MessageLookupByLibrary.simpleMessage("Выйти"),
     "main_page_title": MessageLookupByLibrary.simpleMessage("Главный экран"),
@@ -60,6 +70,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile_title": MessageLookupByLibrary.simpleMessage(
       "Профиль пользователя",
     ),
+    "question_number": m3,
+    "quiz_title": MessageLookupByLibrary.simpleMessage("Викторина"),
     "register_text_line_1": MessageLookupByLibrary.simpleMessage(
       "Для регистрации введите коректную электронную почту и пароль",
     ),
@@ -67,9 +79,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "registr_button": MessageLookupByLibrary.simpleMessage(
       "Зарегестрироваться",
     ),
+    "result_title": MessageLookupByLibrary.simpleMessage("Результат"),
     "start_button": MessageLookupByLibrary.simpleMessage("Начать"),
     "yes": MessageLookupByLibrary.simpleMessage("Да"),
-    "your_email": m1,
-    "your_id": m2,
+    "your_email": m4,
+    "your_id": m5,
   };
 }

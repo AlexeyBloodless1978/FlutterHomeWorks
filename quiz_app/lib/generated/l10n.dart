@@ -258,6 +258,66 @@ class S {
   String get no {
     return Intl.message('Нет', name: 'no', desc: '', args: []);
   }
+
+  /// `Категории`
+  String get categories_title {
+    return Intl.message(
+      'Категории',
+      name: 'categories_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Викторина`
+  String get quiz_title {
+    return Intl.message('Викторина', name: 'quiz_title', desc: '', args: []);
+  }
+
+  /// `Вопрос {index}/{count}`
+  String question_number(Object index, Object count) {
+    return Intl.message(
+      'Вопрос $index/$count',
+      name: 'question_number',
+      desc: '',
+      args: [index, count],
+    );
+  }
+
+  /// `Результат`
+  String get result_title {
+    return Intl.message('Результат', name: 'result_title', desc: '', args: []);
+  }
+
+  /// `Категория {category}`
+  String category(Object category) {
+    return Intl.message(
+      'Категория $category',
+      name: 'category',
+      desc: '',
+      args: [category],
+    );
+  }
+
+  /// `Количество верных ответов: {value}`
+  String count_correct_answers(Object value) {
+    return Intl.message(
+      'Количество верных ответов: $value',
+      name: 'count_correct_answers',
+      desc: '',
+      args: [value],
+    );
+  }
+
+  /// `Вернутся назад`
+  String get back_button {
+    return Intl.message(
+      'Вернутся назад',
+      name: 'back_button',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

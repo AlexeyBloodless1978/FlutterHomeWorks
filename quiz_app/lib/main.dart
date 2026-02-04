@@ -9,20 +9,44 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:json_serializable/json_serializable.dart';
-import 'package:quiz_app/app/app_router.dart';
+import 'package:quiz_app/app/navigation/app_router.dart';
 import 'package:quiz_app/app/qutz_app.dart';
 import 'package:quiz_app/domain/auth_service.dart';
+import 'package:quiz_app/domain/quiz_service.dart';
+import 'package:quiz_app/firebase_options.dart';
 import 'generated/l10n.dart';
+
+
+
+Dio _createDio(){
+  final options = BaseOptions(
+    connectTimeout: const Duration(seconds: 10),
+    receiveTimeout: const Duration(seconds: 10),
+    baseUrl: "https://quizapi.io/api",
+    queryParameters: {'apiKey':'GNY8fwjZdqQ30dZyzcIfTOFzvdf6ji9DyR2fsqYv'},
+  );
+    return Dio(options);
+}
+
+final _dio = _createDio();
+final _QuizSrevice = QuizServiceImpl(dio: _dio);
+
 
 final _router = createRouter(authService: _authService);
 final _authService = AuthServiceImpl(firebaseAuth: FirebaseAuth.instance);
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
 
-  runApp(QuizApp(router: _router, authService: _authService));
+ //await dotenv.load(fileName: '.env');
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  runApp(QuizApp(router: _router, authService: _authService, quizService: _QuizSrevice));
 }
+
+
 
 /*
 

@@ -5,11 +5,19 @@ class LoginRoute extends AppRoute{
   static const _routeName = "login";
   static const _routePath = "/login";
 
+  static const _relativePath ="login";
+
+
+  @override
+  final String relativePath ;
+
   late final  registerRoute = RegisterRoute.child(
       rootRouteName: routeName,
       rootRoutePath: routePath,
   );
 
 
- LoginRoute(): super(routeName: _routeName, routePath: _routePath);
+ LoginRoute(): relativePath = _relativePath,super(routeName: _routeName, routePath: _routePath);
+
+
 }

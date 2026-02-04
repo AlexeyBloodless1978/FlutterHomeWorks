@@ -24,5 +24,12 @@
   "your_email" : "Ваша эл.почта: {value}",
   "is_email_verified" : "Ваша эл.пеочта верифицирована: {value}",
   "yes" : "Да",
-  "no"  : "Нет"
+  "no"  : "Нет",
+  "categories_title": "Категории",
+  "quiz_title": "Викторина",
+  "question_number" : "Вопрос {index}/{count}",
+  "result_title": "Результат",
+  "category": "Категория {category}",
+  "count_correct_answers": "Количество верных ответов: {value}",
+  "back_button": "Вернутся назад"
 }
