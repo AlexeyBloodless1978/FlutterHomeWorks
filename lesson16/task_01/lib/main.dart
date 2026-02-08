@@ -5,7 +5,7 @@ import 'models/note_model.dart';
 import 'notes_page.dart';
 
 void main() {
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 
@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create:(context) => NoteModel(),
-        builder: (context, _){
+        create: (context) => NoteModel(),
+        builder: (context, _) {
           return MaterialApp(
             title: 'MyHomeWork 16 task 1',
             theme: ThemeData(

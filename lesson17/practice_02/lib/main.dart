@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
     return StoreProvider<CounterState>(
       store: counterStore,
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'MyHomeWork 17 task 2',
         theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
         home: CounterPage(),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:dio/dio.dart';
@@ -23,7 +24,7 @@ Dio _createDio(){
     connectTimeout: const Duration(seconds: 10),
     receiveTimeout: const Duration(seconds: 10),
     baseUrl: "https://quizapi.io/api",
-    queryParameters: {'apiKey':'GNY8fwjZdqQ30dZyzcIfTOFzvdf6ji9DyR2fsqYv'},
+    queryParameters: {'apiKey':dotenv.get("API_KEY")},
   );
     return Dio(options);
 }
@@ -37,6 +38,7 @@ final _authService = AuthServiceImpl(firebaseAuth: FirebaseAuth.instance);
 
 
 Future<void> main() async {
+  await dotenv.load(fileName: "asset/.env");
   WidgetsFlutterBinding.ensureInitialized();
 
  //await dotenv.load(fileName: '.env');

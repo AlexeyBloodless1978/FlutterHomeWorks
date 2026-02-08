@@ -318,6 +318,41 @@ class S {
       args: [],
     );
   }
+
+  /// `Нет найдены категории викторины`
+  String get no_categories {
+    return Intl.message(
+      'Нет найдены категории викторины',
+      name: 'no_categories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ошибка: {value}`
+  String error(Object value) {
+    return Intl.message(
+      'Ошибка: $value',
+      name: 'error',
+      desc: '',
+      args: [value],
+    );
+  }
+
+  /// `Неизвестная ошибка`
+  String get unknown_error {
+    return Intl.message(
+      'Неизвестная ошибка',
+      name: 'unknown_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Загружается`
+  String get loading {
+    return Intl.message('Загружается', name: 'loading', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

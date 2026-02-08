@@ -11,11 +11,9 @@ class NotesPage extends StatefulWidget {
 }
 
 class _NotesPageState extends State<NotesPage> {
-
   final _titleController = TextEditingController();
   final _categoryController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
 
   //Не забываем удалять контроллеры
   @override
@@ -24,7 +22,6 @@ class _NotesPageState extends State<NotesPage> {
     _categoryController.dispose();
     super.dispose();
   }
-
 
   void _addNote() {
     if (_formKey.currentState!.validate()) {
@@ -41,14 +38,10 @@ class _NotesPageState extends State<NotesPage> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Мои заметки'),
-      ),
+      appBar: AppBar(title: Text('Мои заметки')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -110,19 +103,15 @@ class _NotesPageState extends State<NotesPage> {
               children: [
                 Text(
                   'Список заметок',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Spacer(), // виджет , который используется для создания гибкого пространства между виджетами в Row, Column или Flex
+                Spacer(),
+                // виджет , который используется для создания гибкого пространства между виджетами в Row, Column или Flex
                 Consumer<NoteModel>(
                   builder: (context, noteModel, child) {
                     return Text(
                       'Всего: ${noteModel.notes.length}',
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                      ),
+                      style: TextStyle(color: Colors.grey[600]),
                     );
                   },
                 ),
@@ -132,7 +121,8 @@ class _NotesPageState extends State<NotesPage> {
             SizedBox(height: 16),
 
             // Список заметок
-            Expanded( //виджет, который заставляет дочерний элемент занимать все доступное пространство в родительском Row, Column или Flex
+            Expanded(
+              //виджет, который заставляет дочерний элемент занимать все доступное пространство в родительском Row, Column или Flex
               child: Consumer<NoteModel>(
                 builder: (context, noteModel, child) {
                   if (noteModel.notes.isEmpty) {
@@ -156,81 +146,66 @@ class _NotesPageState extends State<NotesPage> {
                           SizedBox(height: 8),
                           Text(
                             'Добавьте первую заметку',
-                            style: TextStyle(
-                              color: Colors.grey[500],
-                            ),
+                            style: TextStyle(color: Colors.grey[500]),
                           ),
                         ],
                       ),
                     );
                   }
 
-                  return Scrollbar( //С автоматическим скролбаром лучше видно сколько виджетов
-                      child:  ListView.builder(
-                    itemCount: noteModel.notes.length,
-                    itemBuilder: (context, index) {
-                      final note = noteModel.notes[index];
+                  return Scrollbar(
+                    //С автоматическим скролбаром лучше видно что заметок больше чем экран
+                    child: ListView.builder(
+                      itemCount: noteModel.notes.length,
+                      itemBuilder: (context, index) {
+                        final note = noteModel.notes[index];
 
-                      return Card(
-                        margin: EdgeInsets.only(bottom: 12),
-                        elevation: 2,  // эфект тени 0 - нет 12+ максимальная
-                        child: ListTile(
-                          contentPadding: EdgeInsets.all(16),
-                          leading: CircleAvatar(
-                            backgroundColor: Colors.blue.shade100,
-                            child: Icon(
-                              Icons.note,
-                              color: Colors.blue,
+                        return Card(
+                          margin: EdgeInsets.only(bottom: 12),
+                          elevation: 2, // эфект тени 0 - нет 12+ максимальная
+                          child: ListTile(
+                            contentPadding: EdgeInsets.all(16),
+                            leading: CircleAvatar(
+                              backgroundColor: Colors.blue.shade100,
+                              child: Icon(Icons.note, color: Colors.blue),
                             ),
-                          ),
-                          title: Text(
-                            note.title,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 4),
-                              Text(
-                                'Категория: ${note.category}',
-                                style: TextStyle(
-                                  color: Colors.grey[600],
-                                ),
+                            title: Text(
+                              note.title,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
                               ),
-                            /*  SizedBox(height: 2),
-                              Text(
-                                'Создано:',// ${_formatDate(note.createdAt)}',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey[500],
-                                ),
-                              ),*/
-                            ],
-                          ),
-                          trailing: IconButton(
-                            icon: Icon(
-                              Icons.delete_outline,
-                              color: Colors.grey[500],
                             ),
-                            onPressed: () {
-                              final String noteTitle = note.title;
-                              noteModel.removeNote(index);
-
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Заметка $noteTitle удалена'),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 4),
+                                Text(
+                                  'Категория: ${note.category}',
+                                  style: TextStyle(color: Colors.grey[600]),
                                 ),
-                              );
+                              ],
+                            ),
+                            trailing: IconButton(
+                              icon: Icon(
+                                Icons.delete_outline,
+                                color: Colors.grey[500],
+                              ),
+                              onPressed: () {
+                                final String noteTitle = note.title;
+                                noteModel.removeNote(index);
 
-                            },
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Заметка $noteTitle удалена'),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                      ),
+                        );
+                      },
+                    ),
                   );
                 },
               ),

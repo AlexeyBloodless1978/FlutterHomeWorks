@@ -31,5 +31,9 @@
   "result_title": "Результат",
   "category": "Категория {category}",
   "count_correct_answers": "Количество верных ответов: {value}",
-  "back_button": "Вернутся назад"
+  "back_button": "Вернутся назад",
+  "no_categories": "Нет найдены категории викторины",
+  "error": "Ошибка: {value}",
+  "unknown_error": "Неизвестная ошибка",
+  "loading": "Загружается"
 }

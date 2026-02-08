@@ -5,15 +5,15 @@ import '../../domain/models/models.dart';
 
 import 'package:collection/collection.dart';
 
-
 class QuestionsWidget extends StatefulWidget {
   final List<Question> questions;
-  final void Function(int ) onQuizFinishedHandler;
+  final void Function(int) onQuizFinishedHandler;
 
   const QuestionsWidget({
     required this.questions,
     required this.onQuizFinishedHandler,
-    super.key});
+    super.key,
+  });
 
   @override
   State<QuestionsWidget> createState() => _QuestionsWidgetState();
@@ -31,25 +31,25 @@ class _QuestionsWidgetState extends State<QuestionsWidget>
   int _countCorrectAnswers = 0;
   int _countIncorrectAnswers = 0;
 
-  void _onAnsweQuestion(bool  value) {
+  void _onAnswerQuestion(bool value) {
     final countAnswers = questions.length;
     final index = _tabControler.index;
-    final newIndex = index+1;
+    final newIndex = index + 1;
 
     if (value) {
-       _countCorrectAnswers++;
-} else {
-_countIncorrectAnswers++;
-}
+      _countCorrectAnswers++;
+    } else {
+      _countIncorrectAnswers++;
+    }
 
-    if (newIndex<countAnswers) {
-_tabControler.animateTo(newIndex) ;
-} else {
+    if (newIndex < countAnswers) {
+       debugPrint('newIndex :$newIndex,  countAnswers : $countAnswers');
+      _tabControler.animateTo(newIndex);
+    } else {
+      debugPrint('newIndex :$newIndex,  countAnswers : $countAnswers');
       widget.onQuizFinishedHandler(_countCorrectAnswers);
-}
-
-
-}
+    }
+  }
 
   @override
   void dispose() {
@@ -63,10 +63,13 @@ _tabControler.animateTo(newIndex) ;
       physics: const NeverScrollableScrollPhysics(),
       controller: _tabControler,
       children: questions.mapIndexed((index, e) {
-        return QuestionItem(question: e, index: index, questionsCount: questions.length, onAnswerQuestion: _onAnsweQuestion,);
+        return QuestionItem(
+          question: e,
+          index: index + 1,
+          questionsCount: questions.length,
+          onAnswerQuestion: _onAnswerQuestion,
+        );
       }).toList(),
     );
   }
 }
-
-

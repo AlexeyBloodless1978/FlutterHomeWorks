@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lesson12/api/weather_api_service.dart';
 import 'package:lesson12/models/weather_model.dart';
 
 
 class WeatherService {
   static const String _baseUrl = "https://api.openweathermap.org/data/2.5/";
-  static const String _apiKey = "0f06c4197d319eedf26cea4525a70299";
+  static final String _apiKey = dotenv.get("API_KEY");
 
   late final WeatherApiService _apiService;
 

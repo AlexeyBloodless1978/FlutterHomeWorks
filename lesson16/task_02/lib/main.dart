@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'my homework lessons 12',
+      title: 'MyHomeWork 16 task 2 (Changed lesson 12)',
       theme: ThemeData(primarySwatch: Colors.purple, useMaterial3: true),
       home: const MainScreen(),
       debugShowCheckedModeBanner: false,

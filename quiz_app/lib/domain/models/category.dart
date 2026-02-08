@@ -4,7 +4,7 @@ part of 'models.dart';
 @freezed
 abstract class Category with _$Category{
   const factory Category ({
-    required String id,
+    required int id,
     required String name,
 })= _Category;
 

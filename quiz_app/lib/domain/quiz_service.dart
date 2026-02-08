@@ -26,7 +26,7 @@ class QuizServiceImpl implements QuizService {
   Future<List<Question>> fetchQuestions(String category) async {
     final response = await dio.get(
       '/v1/questions',
-      queryParameters: {'limit': 10, 'category': category},
+      queryParameters: {'limit': 3, 'category': category},
     );
 
     final questionsJson = response.data as List<dynamic>;

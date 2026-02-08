@@ -1,70 +1,29 @@
 import 'package:flutter/material.dart';
-import '/models/weather_model.dart';
-import 'services/weather_service.dart';
-import 'widgets/content_data.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/weather_app_bloc.dart';
 import 'widgets/search_field.dart';
+import '/widgets/empty_state.dart';
+import '/widgets/error_state.dart';
+import '/widgets/loading_state.dart';
+import '/widgets/weather_card.dart';
 
-class MainScreen extends StatefulWidget {
+class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => WeatherAppBloc(),
+      child: const _MainScreenContent(),
+    );
+  }
 }
 
-class _MainScreenState extends State<MainScreen> {
-  final WeatherService _weatherService = WeatherService();
+class _MainScreenContent extends StatelessWidget {
+  const _MainScreenContent();
 
-  String _currentCity = '';
-
-  void _handleSearch(String city) {
-    setState(() {
-      _currentCity = city;
-    });
-    _fetchWeather(city);
-  }
-
-  WeatherModel? _weather;
-  bool _isLoading = false;
-  String _errorMessage = '';
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  Future<void> _fetchWeather(String city) async {
-    setState(() {
-      _isLoading = true;
-      _errorMessage = '';
-      this._weather = null;
-    });
-
-    try {
-      final weather = await _weatherService.getWeatherByCity(city);
-      setState(() {
-        this._weather = weather;
-      });
-    } catch (e) {
-      setState(() {
-        _errorMessage = _getErrorMessage(e);
-      });
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-    }
-  }
-
-  String _getErrorMessage(Object error) {
-    if (error.toString().contains('404')) {
-      return 'Город не найден';
-    } else if (error.toString().contains('401')) {
-      return 'Ошибка API ключа';
-    } else if (error.toString().contains('timeout')) {
-      return 'Таймаут соединения';
-    } else {
-      return 'Ошибка: $error';
-    }
+  void _handleSearch(BuildContext context, String city) {
+    context.read<WeatherAppBloc>().add(WeatherFetchEvent(city));
   }
 
   @override
@@ -90,21 +49,31 @@ class _MainScreenState extends State<MainScreen> {
                 'Узнайте погоду в любом городе',
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
-
               const SizedBox(height: 20),
 
               // Поле поиска
-              SearchField(onSearch: _handleSearch),
-
+              SearchField(onSearch: (city) => _handleSearch(context, city)),
               const SizedBox(height: 20),
 
-              // Основной контент
+              // Основной контент через BlocBuilder
               Expanded(
-                child: ContentData(
-                  isLoading: _isLoading,
-                  loadingCity: _currentCity,
-                  errorMessage: _errorMessage,
-                  weather: _weather,
+                child: BlocBuilder<WeatherAppBloc, WeatherAppState>(
+                  builder: (context, state) {
+                    if (state is WeatherLoadingState) {
+                      return LoadingState(city: state.loadingCity);
+                    }
+
+                    if (state is WeatherErrorState) {
+                      return ErrorState(errorMessage: state.errorMessage);
+                    }
+
+                    if (state is WeatherSuccessState) {
+                      return WeatherCard(weather: state.weather);
+                    }
+
+                    // WeatherEmptyState
+                    return EmptyState();
+                  },
                 ),
               ),
             ],
